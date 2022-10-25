@@ -30,3 +30,8 @@ interface Country {
     ID: number
     Title: string
 }
+
+export interface POIFilter {
+    Latitude: number
+    Longitude: number
+}

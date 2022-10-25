@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import { POIActionTypes, POIState } from "./types";
+import _ from 'lodash'
 
 export const poiInitialState: POIState = {
 	sites: [],
@@ -11,7 +12,8 @@ export const poiReducer: Reducer<POIState, any> = (state = poiInitialState, acti
 		case POIActionTypes.POI_REQUEST:
 			return {...state, fetching: true};
 		case POIActionTypes.POI_SUCCESS:
-			return {...state, fetching: false, sites: action.payload};
+			let results = _.uniqBy(action.payload, (d) => d.ID)
+			return {...state, fetching: false, sites: results};
 		default: {
 			return state;
 		}
