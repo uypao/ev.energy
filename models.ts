@@ -12,7 +12,8 @@ export interface AddressInfo {
     Town?: string
     StateOrProvince: string
     Postcode: string
-    CountryID: Country
+    Country: Country
+    CountryID: number
     Latitude: number
     Longitude: number
     ContactTelephone1?: string

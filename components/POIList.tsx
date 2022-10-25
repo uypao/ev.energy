@@ -8,22 +8,27 @@ import { Site } from '../models';
 import { ApplicationState } from '../store';
 import { getPOIList, chargeRequest } from '../store/poi';
 import { POIRow } from './POIRow';
+import { useNavigation } from '@react-navigation/native';
 
 export const POIList = () => {
     const dispatch = useDispatch<any>()
+    const navigation = useNavigation<any>()
     const {sites} = useSelector((state: ApplicationState) => state.poi)
 
     useEffect(() => {
         dispatch(getPOIList())
     }, [])
 
-    const onPress = (id: any) => {
-        let body = {
-            user: 1,
-            car_id: 1,
-            id,
-        }
-        dispatch(chargeRequest(body))
+    const onPress = (site: Site) => {
+        navigation.navigate('POIDetail', {
+            site
+        })
+        // let body = {
+        //     user: 1,
+        //     car_id: 1,
+        //     id,
+        // }
+        // dispatch(chargeRequest(body))
     }
 
     const renderRow = ({item}: {item: Site}) => (

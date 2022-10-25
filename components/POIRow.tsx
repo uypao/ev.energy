@@ -4,14 +4,14 @@ import { Site } from '../models'
 
 interface Props {
     item: Site
-    onPress: (id: number) => void;
+    onPress: (site: Site) => void;
 }
 
 export const POIRow = ({item, onPress}: Props) => {
     return (
         <TouchableOpacity 
             style={styles.row}
-            onPress={() => onPress(item.ID)}
+            onPress={() => onPress(item)}
         >
             <Text>{item.AddressInfo.Title}</Text>
         </TouchableOpacity>
